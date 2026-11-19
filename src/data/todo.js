@@ -30,7 +30,7 @@ export function createSubsection(title, dueDate, id) {
         const newTask = {
             id : crypto.randomUUID(),
             text,
-            completed,
+            completed : false,
             toggleCompleted() {
                 this.completed = !this.completed;
             }
@@ -51,5 +51,13 @@ export function createSubsection(title, dueDate, id) {
         return [...tasks];
     };
 
-    return { id, title, dueDate, priority, addTask, removeTask, getTasks }
+    function toggleCompleted() {
+        completed = !completed;
+    }
+
+    function getCompleted() {
+        return completed;
+    }
+
+    return { id, title, dueDate, priority, addTask, removeTask, getTasks, toggleCompleted, getCompleted }
 };

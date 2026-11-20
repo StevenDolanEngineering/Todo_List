@@ -1,4 +1,5 @@
 import { newProject } from "../data/project.js";
+import { saveProjects, loadProjects } from "./storage.js";
 
 export function projectManager() {
     

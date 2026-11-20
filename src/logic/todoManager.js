@@ -88,6 +88,12 @@ export function projectManager() {
         findProjectSubsection(subsectionId)?.getTasks().find(task => task.id === taskId)?.toggleCompleted();
     }
     //Group C Initialization
+    function init() {
+        if (listOfProjects.length === 0) {
+            addProject("General");
+        }
+    };
 
-    return { addProject, removeProject, getProjects, setActiveProject, getActiveProject, addProjectSubsection, removeProjectSubsection, findProjectSubsection, toggleProjectSubsectionCompleted, addSubsectionTask, removeSubsectionTask, toggleSubsectionTaskCompleted  }
+
+    return { addProject, removeProject, getProjects, setActiveProject, getActiveProject, addProjectSubsection, removeProjectSubsection, findProjectSubsection, toggleProjectSubsectionCompleted, addSubsectionTask, removeSubsectionTask, toggleSubsectionTaskCompleted, init  }
 };

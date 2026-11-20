@@ -7,10 +7,15 @@ export function newProject(name, id) {
 
     const subsections = [];
 
-        function addSubsection(title, dueDate) {
+    function addSubsection(title, dueDate) {
         const newSubsection = createSubsection(title, dueDate);
         subsections.push(newSubsection);
         return newSubsection;
+    };
+
+    function addExistingSubsection(subsection) {
+        subsections.push(subsection);
+        return subsection;
     }
 
     function removeSubsection(subsectionId) {
@@ -25,5 +30,5 @@ export function newProject(name, id) {
         return [...subsections];
     };
 
-    return { id, name, addSubsection, removeSubsection, getSubsections };
+    return { id, name, addSubsection, addExistingSubsection, removeSubsection, getSubsections };
 }

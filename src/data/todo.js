@@ -1,12 +1,12 @@
 import { differenceInCalendarDays, parseISO } from "date-fns";
 
-export function createSubsection(title, dueDate, id) {
+export function createSubsection(title, dueDate, id, isCompleted = false) {
     if (id === undefined) {
         id = crypto.randomUUID();
     };
 
     const tasks = [];
-    let completed = false;    
+    let completed = isCompleted;    
 
     const priority = ((dueDate) => {
 
@@ -26,11 +26,11 @@ export function createSubsection(title, dueDate, id) {
         }
     })(dueDate);
 
-    function addTask(text) {
+    function addTask(text, taskId = crypto.randomUUID(), isCompleted = false) {
         const newTask = {
-            id : crypto.randomUUID(),
+            id : taskId,
             text,
-            completed : false,
+            completed : isCompleted,
             toggleCompleted() {
                 this.completed = !this.completed;
             }

@@ -5,6 +5,13 @@ export function projectManager() {
     const listOfProjects = [];
     let activeProject = null;
 
+    function isProjectActive() {
+        if (activeProject != null) {
+            return true;
+        }
+        return false;
+    }
+
     //Group A Project Management
     function addProject(name) {
         const createdProject = newProject(name);
@@ -42,7 +49,45 @@ export function projectManager() {
         return activeProject;
     };
 
+    //Group B Delegating Subsections & Tasks
+    function addProjectSubsection(title, dueDate) {
+        if (isProjectActive()) {
+            const newSubsection = activeProject.addSubsection(title, dueDate);
+            return newSubsection;
+        }
+
+    };
+
+    function removeProjectSubsection(subsectionId) {
+        if (isProjectActive()) {
+            activeProject.removeSubsection(subsectionId);
+        }
+    };
+
+    function findProjectSubsection(subsectionId) {
+        if (isProjectActive()) {
+            const searchedSubsection = activeProject.getSubsections().find(subsection => subsection.id === subsectionId);
+            return searchedSubsection;
+        }
+    };
+
+    function toggleProjectSubsectionCompleted(subsectionId) {
+        findProjectSubsection(subsectionId)?.toggleCompleted();
+    }
+
+    function addSubsectionTask(subsectionId, text) {
+        const newSubsectionTask = findProjectSubsection(subsectionId)?.addTask(text);
+        return newSubsectionTask;
+    }
+
+    function removeSubsectionTask(subsectionId, taskId) {
+        findProjectSubsection(subsectionId)?.removeTask(taskId);
+    }
+
+    function toggleSubsectionTaskCompleted(subsectionId, taskId) {
+        findProjectSubsection(subsectionId)?.getTasks().find(task => task.id === taskId)?.toggleCompleted();
+    }
     //Group C Initialization
 
-    return { addProject, removeProject, getProjects, setActiveProject, getActiveProject  }
+    return { addProject, removeProject, getProjects, setActiveProject, getActiveProject, addProjectSubsection, removeProjectSubsection, findProjectSubsection, toggleProjectSubsectionCompleted, addSubsectionTask, removeSubsectionTask, toggleSubsectionTaskCompleted  }
 };

@@ -18,9 +18,9 @@ export function projectManager() {
         const createdProject = newProject(name);
         listOfProjects.push(createdProject);
         if (listOfProjects[0] === createdProject) {
-            const currentProject = setActiveProject(createdProject.id)
-            return currentProject;
+            setActiveProject(createdProject.id);
         }
+        saveProjects(listOfProjects);
         return createdProject;
     };
 
@@ -33,7 +33,7 @@ export function projectManager() {
                 activeProject = listOfProjects.length > 0 ? listOfProjects[0] : null;
             }
         }
-
+        saveProjects(listOfProjects);
         return [...listOfProjects];
     };
 
@@ -54,6 +54,7 @@ export function projectManager() {
     function addProjectSubsection(title, dueDate) {
         if (isProjectActive()) {
             const newSubsection = activeProject.addSubsection(title, dueDate);
+            saveProjects(listOfProjects);
             return newSubsection;
         }
 
@@ -62,6 +63,7 @@ export function projectManager() {
     function removeProjectSubsection(subsectionId) {
         if (isProjectActive()) {
             activeProject.removeSubsection(subsectionId);
+            saveProjects(listOfProjects);
         }
     };
 
@@ -74,25 +76,34 @@ export function projectManager() {
 
     function toggleProjectSubsectionCompleted(subsectionId) {
         findProjectSubsection(subsectionId)?.toggleCompleted();
+        saveProjects(listOfProjects);
     }
 
     function addSubsectionTask(subsectionId, text) {
         const newSubsectionTask = findProjectSubsection(subsectionId)?.addTask(text);
+        saveProjects(listOfProjects);
         return newSubsectionTask;
     }
 
     function removeSubsectionTask(subsectionId, taskId) {
         findProjectSubsection(subsectionId)?.removeTask(taskId);
+        saveProjects(listOfProjects);
     }
 
     function toggleSubsectionTaskCompleted(subsectionId, taskId) {
         findProjectSubsection(subsectionId)?.getTasks().find(task => task.id === taskId)?.toggleCompleted();
+        saveProjects(listOfProjects);
     }
     //Group C Initialization
     function init() {
-        if (listOfProjects.length === 0) {
+        const savedProjects = loadProjects();
+
+        if (savedProjects.length > 0) {
+            listOfProjects.push(...savedProjects);
+            activeProject = setActiveProject(listOfProjects[0].id);
+        } else {
             addProject("General");
-        }
+        };
     };
 
 

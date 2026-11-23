@@ -57,3 +57,18 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CSS Reset End */
 
+#grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+#side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3a85db;
+    height: 100vh;
+}

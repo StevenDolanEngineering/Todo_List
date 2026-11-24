@@ -1,7 +1,3 @@
-export function renderProjects(manager) {
-    
-};
-
 export function renderCreateProject(manager) {
     const content = document.querySelector("#main-content");
 

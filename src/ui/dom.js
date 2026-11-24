@@ -52,14 +52,23 @@ export function renderCreateProject(manager) {
         addTaskButton.classList.add("form-button-add-new");
         addTaskButton.textContent = "+ New Task";
         addTaskButton.type = "button";
-        addTaskButton.addEventListener("click", () => createSectionTask());
+        addTaskButton.addEventListener("click", () => createSectionTask(newTaskDiv));
 
         const newTaskDiv = document.createElement("div");
         newTaskDiv.classList.add("task-container");
 
+        newSubsectionDiv.appendChild(createSubsectionlabel);
+        newSubsectionDiv.appendChild(createSubsectionInput);
+        newSubsectionDiv.appendChild(createDueDateLabel);
+        newSubsectionDiv.appendChild(createDueDateInput);
+        newSubsectionDiv.appendChild(addTaskButton);
         newSubsectionDiv.appendChild(newTaskDiv);
 
         createSectionTask(newTaskDiv);
+
+        newSubsectionDiv.appendChild(createDivider());
+        
+        return newSubsectionDiv
     }
 
     function createSectionTask(tasksContainer) {
@@ -70,6 +79,9 @@ export function renderCreateProject(manager) {
         createTaskInput.type = "text";
         createTaskInput.name = "task_text";
         createTaskInput.placeholder = "Look up recipes...";
+
+        tasksContainer.appendChild(createTaskLabel);
+        tasksContainer.appendChild(createTaskInput);
     }
     
     function createDivider() {
@@ -77,4 +89,13 @@ export function renderCreateProject(manager) {
         line.classList.add("section-line");
         return line;
     }
+
+    createProjectDiv.appendChild(createProjectTitle);
+    createProjectDiv.appendChild(createProjectForm);
+    createProjectForm.appendChild(createProjectLabel);
+    createProjectForm.appendChild(createProjectInput);
+    createProjectForm.appendChild(createDivider());
+    createProjectForm.appendChild(createSectionSubsection());
+    createProjectForm.appendChild(addSubsectionButton);
+    content.appendChild(createProjectDiv);
 };

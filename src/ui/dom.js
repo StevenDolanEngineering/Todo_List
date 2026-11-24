@@ -40,6 +40,45 @@ export function renderCreateProject(manager) {
     submitButton.textContent = "Submit Project";
     submitButton.type = "submit";
 
+    createProjectForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const projectName = createProjectInput.value.trim();
+        if (!projectName) return;
+
+        const createdProject = manager.addProject(projectName);
+        manager.setActiveProject(createdProject.id);
+
+        const subsectionContainers = subsectionsList.querySelectorAll(".subsection-container");
+        subsectionContainers.forEach(subContainer => {
+            const subTitle = subContainer.querySelector('[name="subsection_name"]').value.trim();
+            const subDueDate = subContainer.querySelector('[name="due_date"]').value;
+
+            if (subTitle && subDueDate) {
+                const createdSub = manager.addProjectSubsection(subTitle, subDueDate);
+
+                const taskInputs = subContainer.querySelectorAll('[name="task_text"]');
+                taskInputs.forEach(taskInput => {
+                    const taskText = taskInput.value.trim();
+                    if (taskText) {
+                        manager.addSubsectionTask(createdSub.id, taskText);
+                    }
+                });
+            }
+        });
+
+        renderProjects(manager);
+    });
+
+    const cancelButton = document.createElement("button");
+    cancelButton.classList.add("form-button-cancel");
+    cancelButton.textContent = "Cancel";
+    cancelButton.type = "button";
+    cancelButton.addEventListener("click", () => {
+        content.innerHTML = "";
+        renderProjects(manager);
+    })
+
     function createSectionSubsection() {
         const newSubsectionDiv = document.createElement("div");
         newSubsectionDiv.classList.add("subsection-container");
@@ -111,6 +150,8 @@ export function renderCreateProject(manager) {
     createProjectForm.appendChild(createProjectInput);
     createProjectForm.appendChild(createDivider());
     createProjectForm.appendChild(addSubsectionButton);
+    createProjectForm.appendChild(subsectionsList);
     createProjectForm.appendChild(submitButton);
+    createProjectForm.appendChild(cancelButton);
     content.appendChild(createProjectDiv);
 };

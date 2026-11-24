@@ -36,7 +36,7 @@ export function renderCreateProject() {
         createSubsectionlabel.textContent = "Section Name";
 
         const createSubectionInput = document.createElement("input");
-        createProjectInput.type = "text";
+        createSubsectionInput.type = "text";
         createSubectionInput.id = "subsection_name";
         createSubectionInput.placeholder = "Plan Meals..."
 

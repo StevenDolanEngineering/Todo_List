@@ -32,6 +32,9 @@ export function renderCreateProject() {
     addSubsectionButton.addEventListener("click", () => createSectionSubsection());
 
     function createSectionSubsection() {
+        const newSubsectionDiv = document.createElement("div");
+        newSubsectionDiv.classList.add = "subsection-container";
+
         const createSubsectionlabel = document.createElement("label");
         createSubsectionlabel.textContent = "Section Name";
 
@@ -53,10 +56,15 @@ export function renderCreateProject() {
         addTaskButton.type = "button";
         addTaskButton.addEventListener("click", () => createSectionTask());
 
-        createSectionTask();
+        const newTaskDiv = document.createElement("div");
+        newTaskDiv.classList.add("task-container");
+
+        newSubsectionDiv.appendChild(newTaskDiv);
+
+        createSectionTask(newTaskDiv);
     }
 
-    function createSectionTask() {
+    function createSectionTask(tasksContainer) {
         const createTaskLabel = document.createElement("label");
         createTaskLabel.textContent = "To Do: "
 

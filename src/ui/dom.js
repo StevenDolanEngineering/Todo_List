@@ -31,7 +31,7 @@ export function renderCreateProject(manager) {
 
     function createSectionSubsection() {
         const newSubsectionDiv = document.createElement("div");
-        newSubsectionDiv.classList.add = "subsection-container";
+        newSubsectionDiv.classList.add("subsection-container");
 
         const createSubsectionlabel = document.createElement("label");
         createSubsectionlabel.textContent = "Section Name";

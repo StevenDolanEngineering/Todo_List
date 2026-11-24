@@ -26,14 +26,14 @@ export function renderCreateProject() {
     createProjectInput.id = "project_name";
     createProjectInput.placeholder = "Create A Grocery List...";
 
+    const addSubsectionButton = document.createElement("button");
+    addSubsectionButton.classList.add("form-button-add-new");
+    addSubsectionButton.textContent = "+ New Subsection";
+    addSubsectionButton.addEventListener("click", () => createSectionSubsection());
+
     function createSectionSubsection() {
         const createSubsectionlabel = document.createElement("label");
         createSubsectionlabel.textContent = "Section Name";
-
-        const addSubsectionButton = document.createElement("button");
-        addSubsectionButton.classList.add("form-button-add-new");
-        addSubsectionButton.textContent = "+ New Subsection";
-        addSubsectionButton.addEventListener("click", () => createSectionSubsection());
 
         const createSubectionInput = document.createElement("input");
         createProjectInput.type = "text";

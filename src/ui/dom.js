@@ -56,7 +56,13 @@ export function renderCreateProject() {
     }
 
     function createSectionTask() {
+        const createTaskLabel = document.createElement("label");
+        createTaskLabel.textContent = "To Do: "
 
+        const createTaskInput = document.createElement("input");
+        createTaskInput.type = "text";
+        createTaskInput.id = "task_text";
+        createTaskInput.placeholder = "Look up recipes...";
     }
     
     function createDivider() {

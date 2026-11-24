@@ -28,6 +28,7 @@ export function renderCreateProject() {
     const addSubsectionButton = document.createElement("button");
     addSubsectionButton.classList.add("form-button-add-new");
     addSubsectionButton.textContent = "+ New Subsection";
+    addSubsectionButton.type = "button";
     addSubsectionButton.addEventListener("click", () => createSectionSubsection());
 
     function createSectionSubsection() {
@@ -49,6 +50,7 @@ export function renderCreateProject() {
         const addTaskButton = document.createElement("button");
         addTaskButton.classList.add("form-button-add-new");
         addTaskButton.textContent = "+ New Task";
+        addTaskButton.type = "button";
         addTaskButton.addEventListener("click", () => createSectionTask());
 
         createSectionTask();

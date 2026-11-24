@@ -1,10 +1,8 @@
-import { projectManager } from "../logic/todoManager.js";
-
-export function renderProjects() {
+export function renderProjects(manager) {
     
 };
 
-export function renderCreateProject() {
+export function renderCreateProject(manager) {
     const content = document.querySelector("#main-content");
 
     const createProjectDiv = document.createElement("div");
@@ -22,7 +20,7 @@ export function renderCreateProject() {
 
     const createProjectInput = document.createElement("input");
     createProjectInput.type = "text";
-    createProjectInput.id = "project_name";
+    createProjectInput.name = "project_name";
     createProjectInput.placeholder = "Create A Grocery List...";
 
     const addSubsectionButton = document.createElement("button");
@@ -40,7 +38,7 @@ export function renderCreateProject() {
 
         const createSubectionInput = document.createElement("input");
         createSubsectionInput.type = "text";
-        createSubectionInput.id = "subsection_name";
+        createSubectionInput.name = "subsection_name";
         createSubectionInput.placeholder = "Plan Meals..."
 
         const createDueDateLabel = document.createElement("label");
@@ -48,7 +46,7 @@ export function renderCreateProject() {
 
         const createDueDateInput = document.createElement("input");
         createDueDateInput.type = "date";
-        createDueDateInput.id = "due_date";
+        createDueDateInput.name = "due_date";
 
         const addTaskButton = document.createElement("button");
         addTaskButton.classList.add("form-button-add-new");
@@ -70,7 +68,7 @@ export function renderCreateProject() {
 
         const createTaskInput = document.createElement("input");
         createTaskInput.type = "text";
-        createTaskInput.id = "task_text";
+        createTaskInput.name = "task_text";
         createTaskInput.placeholder = "Look up recipes...";
     }
     

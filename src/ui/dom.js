@@ -36,10 +36,10 @@ export function renderCreateProject(manager) {
         const createSubsectionlabel = document.createElement("label");
         createSubsectionlabel.textContent = "Section Name";
 
-        const createSubectionInput = document.createElement("input");
+        const createSubsectionInput = document.createElement("input");
         createSubsectionInput.type = "text";
-        createSubectionInput.name = "subsection_name";
-        createSubectionInput.placeholder = "Plan Meals..."
+        createSubsectionInput.name = "subsection_name";
+        createSubsectionInput.placeholder = "Plan Meals..."
 
         const createDueDateLabel = document.createElement("label");
         createDueDateLabel.textContent = "Due Date: "

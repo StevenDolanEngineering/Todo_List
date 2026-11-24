@@ -1,3 +1,4 @@
+import { add } from "date-fns";
 import { projectManager } from "../logic/todoManager.js";
 
 export function renderProjects() {
@@ -23,9 +24,40 @@ export function renderCreateProject() {
     const createProjectInput = document.createElement("input");
     createProjectInput.type = "text";
     createProjectInput.id = "project_name";
-    createProjectInput.placeholder = "Create To Do List...";
+    createProjectInput.placeholder = "Create A Grocery List...";
 
-    
+    function createSectionSubsection() {
+        const createSubsectionlabel = document.createElement("label");
+        createSubsectionlabel.textContent = "Section Name";
+
+        const addSubsectionButton = document.createElement("button");
+        addSubsectionButton.classList.add("form-button-add-new");
+        addSubsectionButton.textContent = "+ New Subsection";
+        addSubsectionButton.addEventListener("click", () => createSectionSubsection());
+
+        const createSubectionInput = document.createElement("input");
+        createProjectInput.type = "text";
+        createSubectionInput.id = "subsection_name";
+        createSubectionInput.placeholder = "Plan Meals..."
+
+        const createDueDateLabel = document.createElement("label");
+        createDueDateLabel.textContent = "Due Date: "
+
+        const createDueDateInput = document.createElement("input");
+        createDueDateInput.type = "date";
+        createDueDateInput.id = "due_date";
+
+        const addTaskButton = document.createElement("button");
+        addTaskButton.classList.add("form-button-add-new");
+        addTaskButton.textContent = "+ New Task";
+        addTaskButton.addEventListener("click", () => createSectionTask());
+
+        createSectionTask();
+    }
+
+    function createSectionTask() {
+
+    }
     
     function createDivider() {
         const line = document.createElement("div");

@@ -1,4 +1,3 @@
-import { add } from "date-fns";
 import { projectManager } from "../logic/todoManager.js";
 
 export function renderProjects() {

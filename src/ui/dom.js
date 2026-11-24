@@ -22,12 +22,23 @@ export function renderCreateProject(manager) {
     createProjectInput.type = "text";
     createProjectInput.name = "project_name";
     createProjectInput.placeholder = "Create A Grocery List...";
+    createProjectInput.required = true;
 
     const addSubsectionButton = document.createElement("button");
     addSubsectionButton.classList.add("form-button-add-new");
     addSubsectionButton.textContent = "+ New Subsection";
     addSubsectionButton.type = "button";
-    addSubsectionButton.addEventListener("click", () => createSectionSubsection());
+    addSubsectionButton.addEventListener("click", () => {
+        subsectionsList.appendChild(createSectionSubsection());
+    });
+
+    const subsectionsList = document.createElement("div");
+    subsectionsList.classList.add("subsections-list");
+
+    const submitButton = document.createElement("button");
+    submitButton.classList.add("form-button-submit");
+    submitButton.textContent = "Submit Project";
+    submitButton.type = "submit";
 
     function createSectionSubsection() {
         const newSubsectionDiv = document.createElement("div");
@@ -39,7 +50,8 @@ export function renderCreateProject(manager) {
         const createSubsectionInput = document.createElement("input");
         createSubsectionInput.type = "text";
         createSubsectionInput.name = "subsection_name";
-        createSubsectionInput.placeholder = "Plan Meals..."
+        createSubsectionInput.placeholder = "Plan Meals...";
+        createSubsectionInput.required = true;
 
         const createDueDateLabel = document.createElement("label");
         createDueDateLabel.textContent = "Due Date: "
@@ -47,6 +59,7 @@ export function renderCreateProject(manager) {
         const createDueDateInput = document.createElement("input");
         createDueDateInput.type = "date";
         createDueDateInput.name = "due_date";
+        createDueDateInput.required = true;
 
         const addTaskButton = document.createElement("button");
         addTaskButton.classList.add("form-button-add-new");
@@ -67,7 +80,7 @@ export function renderCreateProject(manager) {
         createSectionTask(newTaskDiv);
 
         newSubsectionDiv.appendChild(createDivider());
-        
+
         return newSubsectionDiv
     }
 
@@ -90,12 +103,14 @@ export function renderCreateProject(manager) {
         return line;
     }
 
+    subsectionsList.appendChild(createSectionSubsection());
+
     createProjectDiv.appendChild(createProjectTitle);
     createProjectDiv.appendChild(createProjectForm);
     createProjectForm.appendChild(createProjectLabel);
     createProjectForm.appendChild(createProjectInput);
     createProjectForm.appendChild(createDivider());
-    createProjectForm.appendChild(createSectionSubsection());
     createProjectForm.appendChild(addSubsectionButton);
+    createProjectForm.appendChild(submitButton);
     content.appendChild(createProjectDiv);
 };
